@@ -1,0 +1,12 @@
+{
+  "recommendations": [
+    "firefox-devtools.vscode-firefox-debug",
+    "ritwickdey.liveserver",
+    "ecmel.vscode-html-css",
+    "donjayamanne.githistory",
+    "sibiraj-s.vscode-scss-formatter",
+    "mrmlnc.vscode-scss",
+    "redhat.vscode-xml",
+    "redhat.vscode-yaml"
+  ]
+}
