@@ -33,7 +33,7 @@ module.exports = {
             filename: '[name].css',
         }),
         new HtmlWebpackPlugin({
-            template: './indexW1.html',
+            template: './index.html',
             chunks: ['main'],
             filename: 'index.html',
         }),
