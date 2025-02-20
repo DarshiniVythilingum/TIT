@@ -1,0 +1,19 @@
+#Layer 1
+FROM node:latest AS builder
+WORKDIR /app
+COPY ./app/package*.json ./
+RUN npm install
+COPY ./app/ ./
+RUN npm run build
+
+#Layer 2
+FROM nginx
+
+# COPY default.conf /etc/nginx/conf.d/default.conf
+COPY ./default.conf /etc/nginx/conf.d/default.conf
+
+COPY --from=builder ./app/dist /var/www/html
+    
+EXPOSE 80
+
+

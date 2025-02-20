@@ -1,0 +1,54 @@
+version: "3.8"
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: app/Dockerfile1
+    ports:
+      - "80:80"
+    networks:
+      - default
+    volumes:
+      - nginx:/usr/share/nginx/html
+    deploy:
+      replicas: 3  
+      update_config:
+        parallelism: 1  
+        delay: 10s
+
+  api:
+    image: node:14
+    working_dir: /app
+    networks:
+      - default
+    volumes:
+      - ./app:/app
+    command: ["node", "index.js"]
+
+  # RUN echo "API_PORT=3000" >> /app/.env &&\
+  #     echo "MARIADB_ROOT_PASSWORD=123456" >> /app/.env &&\
+  #     echo "MARIADB_DATABASE-in-class-db" >> /app/.env &&\
+  #     echo "MARIADB_USER-in-class-user" >> /app/.env &&\
+  #     echo "MARIADB_PASSWORD=654321" >> /app/.env
+
+  db:
+    image: mariadb
+    environment:
+      - MARIADB_ROOT_PASSWORD=123456
+      - MARIADB_DATABASE-in-class-db
+      - MARIADB_USER-in-class-user
+      - MARIADB_PASSWORD=654321
+
+    networks:
+      - default
+    volumes:
+      - database:/var/lib/mysql
+
+networks:
+  default:
+    driver: bridge
+
+volumes:
+  nginx:
+  database:

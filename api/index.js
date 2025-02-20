@@ -10,7 +10,7 @@ dotenv.config({path: path.join(_dirname, ".env")});
 
 // Database Configuration
 const dbConfig = {
-    host: "127.0.0.1", 
+    host: 'db', 
     port: 3306, //docker ps shows port 3306 for mariadb
     user: process.env.MARIADB_USER,
     password: process.env.MARIADB_PASSWORD,
